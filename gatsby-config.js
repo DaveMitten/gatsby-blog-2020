@@ -1,9 +1,14 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
-  plugins: ["gatsby-plugin-sass"]
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
+        sans: ["Montserrat", ...defaultTheme.fontFamily.sans]
+      }
+    }
+  },
+  variants: {},
+  plugins: [`gatsby-plugin-postcss`]
 }
