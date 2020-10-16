@@ -1,14 +1,19 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
+const defaultTheme = require('tailwindcss/defaultTheme');
+const DOTENV = require('dotenv');
+
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+  DOTENV.config();
+}
+
 
 module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
-        sans: ["Montserrat", ...defaultTheme.fontFamily.sans]
-      }
+  plugins: [`gatsby-plugin-postcss`, {
+    resolve: `gatsby-source-contentful`,
+    options: {
+      spaceId: `xkjjro6kcwla`,
+      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
     }
-  },
-  variants: {},
-  plugins: [`gatsby-plugin-postcss`]
-}
+  }, `gatsby-plugin-sharp`,
+  `@contentful/gatsby-transformer-contentful-richtext`
+  ]
+};
