@@ -1,37 +1,23 @@
 import React from "react"
 // import Article from "./article"
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
+// import get from 'lodash/get'
 
-const posts = get(this, 'props.data.allContentfulBlogPost.edges');
+// const posts = get(this, 'data.allContentfulBlogPost.edges');
 
 
-export default () => (
-  <div>
-    {posts.map(({ node }) => {
-      return (
-          <li key={node.slug}>
-            <div>{node.author.name}</div>
-            <div>{node.description.description}</div>
-          </li>
-      )
-    })}
-  </div>
+export default ({props}) => (
+    <div>
+        {console.log('inside article list', props.allContentfulBlogPost)}
+        {props.allContentfulBlogPost.edges.map(({node}) => {
+            return (
+                <li key={node.slug}>
+                    <div>{node.author.name}</div>
+                    <div>{node.description.description}</div>
+                </li>
+            )
+        })}
+    </div>
 )
 
 
-export const pageQuery = graphql`
-  query BlogIndexQuery {
-    allContentfulBlogPost {
-      edges {
-        node {
-          author {
-            name
-          }
-          description {
-            description
-          }
-        }
-      }
-    }
-  }`;
+

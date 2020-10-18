@@ -3,7 +3,7 @@ import Header from "./header.js"
 import Footer from "./footer.js"
 
 export default ({ children }) => (
-  <div>
+  <div className="bg-gray-100">
     <Header/>
     <div>
       {children}

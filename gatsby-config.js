@@ -7,6 +7,15 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
 
 
 module.exports = {
+  siteMetadata: {
+    title: 'DJM Blog',
+    // titleTemplate: '%s · The Real Hero',
+    description:
+        'Web development and design articles by David James Mitten. ',
+    url: 'https://www.davidjamesmitten.com' // No trailing slash allowed!
+    // image: '/images/snape.jpg', // Path to your image you placed in the 'static' folder
+    // twitterUsername: '@occlumency'
+  },
   plugins: [`gatsby-plugin-postcss`, {
     resolve: `gatsby-source-contentful`,
     options: {
