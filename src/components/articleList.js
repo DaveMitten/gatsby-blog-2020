@@ -6,16 +6,23 @@ import React from "react"
 
 
 export default ({props}) => (
-    <div>
-        {console.log('inside article list', props.allContentfulBlogPost)}
-        {props.allContentfulBlogPost.edges.map(({node}) => {
-            return (
-                <li key={node.slug}>
-                    <div>{node.author.name}</div>
-                    <div>{node.description.description}</div>
-                </li>
-            )
-        })}
+    <div className="flex h-64">
+            <div className="flex-none h-64 w-12 bg-white mx-32 pt-48">
+                <div className="transform -rotate-90 align-baseline ">Articles</div>
+            </div>
+        <div className='flex-1'>
+            {props.allContentfulBlogPost.edges.map(({node}) => {
+                return (
+                    <li key={node.slug}>
+                        <div>{node.author.name}</div>
+                        <div>{node.description.description}</div>
+                    </li>
+                )
+            })}
+        </div>
+        <div className="flex-none h-64 w-12 bg-white mx-32 pt-10">
+            <div className="transform rotate-90">More...</div>
+        </div>
     </div>
 )
 
