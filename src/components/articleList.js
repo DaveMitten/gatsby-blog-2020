@@ -8,7 +8,7 @@ import React from "react"
 export default ({props}) => (
     <div className="flex h-64">
             <div className="flex-none h-64 w-12 bg-white mx-32 pt-48">
-                <div className="transform -rotate-90 align-baseline ">Articles</div>
+                <div className="transform -rotate-90 align-baseline">Articles</div>
             </div>
         <div className='flex-1'>
             {props.allContentfulBlogPost.edges.map(({node}) => {

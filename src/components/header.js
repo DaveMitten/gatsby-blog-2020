@@ -1,10 +1,10 @@
 import React from "react"
 
 
-export default () =>
+export default (props) =>
     (
         //container
-        <div className="flex flex-wrap place-items-center justify-between bg-white h-20 text-gray-200">
+        <div className={props.rowStart + ` flex flex-wrap place-items-center justify-between bg-white h-20 text-gray-200`}>
             <div className="ml-10">
                 <h1 className="inline mr-1 text-gray-400">David James Mitten</h1>||
                 <h2 className="inline ml-1">
