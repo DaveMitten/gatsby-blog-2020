@@ -9,7 +9,7 @@ const indexPage =
         return (
             <Layout>
                 {/*{console.log('data', data.allContentfulBlogPost.edges)}*/}
-                <TagFilter />
+                <TagFilter/>
                 <div className="bg-white h-3 my-4 mx-auto w-2/3"></div>
                 <ArticleList props={data}/>
             </Layout>
@@ -24,11 +24,18 @@ export const query = graphql`
             edges {
                 node {
                     slug
-                    author {
-                        name
-                    }
+                    title
+                    tags
                     description {
                         description
+                    }
+                    heroImage {
+                        file {
+                            url
+                        }
+                    }
+                    author {
+                        name
                     }
                 }
             }
