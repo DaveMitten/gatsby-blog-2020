@@ -19,7 +19,7 @@ module.exports = {
   plugins: [`gatsby-plugin-postcss`, {
     resolve: `gatsby-source-contentful`,
     options: {
-      spaceId: `xkjjro6kcwla`,
+      spaceId: `4o7yt0uf9ynz`,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
     }
   }, `gatsby-plugin-sharp`,

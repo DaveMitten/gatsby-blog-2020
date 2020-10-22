@@ -8,9 +8,8 @@ const indexPage =
     ({data}) => {
         return (
             <Layout>
-                {/*{console.log('data', data.allContentfulBlogPost.edges)}*/}
                 <TagFilter/>
-                <div className="bg-white h-3 my-4 mx-auto w-2/3"></div>
+                <div className="bg-white h-3 my-4 mx-auto w-11/12 mb-12"></div>
                 <ArticleList props={data}/>
             </Layout>
         )
