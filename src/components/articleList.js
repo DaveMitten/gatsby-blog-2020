@@ -1,8 +1,5 @@
 import React from "react"
-// import Article from "./article"
-// import get from 'lodash/get'
-
-// const posts = get(this, 'data.allContentfulBlogPost.edges');
+import {Link} from "gatsby"
 
 
 export default ({props}) => (
@@ -14,21 +11,21 @@ export default ({props}) => (
             {props.allContentfulBlogPost.edges.map(({node}) => {
                 return (
 
-
-                    <div className=" h-64 w-48 mb-3 bg-white" key={node.slug}>
-                        <img className="h-32 w-48" src={node.heroImage.file.url} alt=""/>
-                        <div className="grid grid-rows-2 gap-0 h-32 p-2">
-                            <div>
-                                <div className="bg-orange-300 w-10 mb-2 h-1"></div>
-                                <div>{node.title}</div>
+                    <Link to={`/blog/${node.title}`}>
+                        <div className=" h-64 w-48 mb-3 bg-white" key={node.slug}>
+                            <img className="h-32 w-48" src={node.heroImage.file.url} alt=""/>
+                            <div className="grid grid-rows-2 gap-0 h-32 p-2">
+                                <div>
+                                    <div className="bg-orange-300 w-10 mb-2 h-1"></div>
+                                    <div>{node.title}</div>
+                                </div>
+                                <div className="mt-auto">{node.tags.tags.map(j => <div
+                                    className="mr-1 inline overflow-auto text-gray-400">{j}</div>)}</div>
                             </div>
-                            <div className="mt-auto">{node.tags.map(j => <div
-                                className="mr-1 inline overflow-auto text-gray-400">{j}</div>)}</div>
+
                         </div>
 
-                    </div>
-
-
+                    </Link>
                 )
             })}
         </div>

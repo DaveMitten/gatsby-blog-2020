@@ -1,6 +1,6 @@
 import React from 'react'
-import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
+import {graphql} from 'gatsby'
+// import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
@@ -9,31 +9,27 @@ import Layout from '../components/layout'
 
 class BlogPostTemplate extends React.Component {
     render() {
-        const post = get(this.props, 'data.contentfulBlogPost')
-        const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+        const post = get(this.props, 'data.contentfulBlogPost');
+        // const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
         return (
-            <Layout location={this.props.location}>
-                <div style={{ background: '#fff' }}>
-                    <Helmet title={`${post.title} | ${siteTitle}`} />
+            <Layout screen="h-full">
+                {/*<div className="container mx-auto px-64 bg-white overflow-scroll">*/}
+                <div className="mx-64 px-48 py-10 m-10 bg-white overflow-scroll rounded-lg">
+                    {/*<Helmet title={`${post.title} | ${siteTitle}`} />*/}
                     <div>
                         <Img
                             alt={post.title}
-                            // fluid={post.heroImage.fluid}
                         />
                     </div>
-                    <div className="wrapper">
-                        <h1 className="section-headline">{post.title}</h1>
-                        <p
-                            style={{
-                                display: 'block',
-                            }}
-                        >
-                            {post.publishDate}
+                    <div >
+                        <h1 className="text-4xl mb-2">{post.title}</h1>
+                        <p  className="text-1xl mb-2">
+                            {post.dateAndTime}
                         </p>
-                        <div
+                        <div className="overflow-auto"
                             dangerouslySetInnerHTML={{
-                                __html: post.body.childMarkdownRemark.html,
+                                __html: post.richTextPost.childContentfulRichText.html
                             }}
                         />
                     </div>
@@ -46,20 +42,29 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-    query BlogPostBySlug($slug: String!) {
-        contentfulBlogPost(slug: { eq: $slug }) {
+    query BlogPostQuery($slug: Int!){
+        contentfulBlogPost(slug: {eq: $slug}) {
+            slug
             title
-            publishDate(formatString: "MMMM Do, YYYY")
+            dateAndTime
             heroImage {
-                fluid(maxWidth: 1180, background: "rgb:000000") {
-                    ...GatsbyContentfulFluid_tracedSVG
+                fluid {
+                    src
+                }
+                file {
+                    url
                 }
             }
-            body {
-                childMarkdownRemark {
+            richTextPost {
+                childContentfulRichText {
                     html
                 }
+                id
+            }
+            tags {
+                tags
             }
         }
     }
+
 `

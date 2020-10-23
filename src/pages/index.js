@@ -7,8 +7,8 @@ import {graphql} from "gatsby";
 const indexPage =
     ({data}) => {
         return (
-            <Layout>
-                <TagFilter/>
+            <Layout screen="h-screen">
+                <TagFilter props={data} />
                 <div className="bg-white h-3 my-4 mx-auto w-11/12 mb-12"></div>
                 <ArticleList props={data}/>
             </Layout>
@@ -24,17 +24,19 @@ export const query = graphql`
                 node {
                     slug
                     title
-                    tags
-                    description {
-                        description
-                    }
+                    dateAndTime
                     heroImage {
                         file {
                             url
                         }
                     }
-                    author {
-                        name
+                    richTextPost {
+                        childContentfulRichText {
+                            html
+                        }
+                    }
+                    tags {
+                        tags
                     }
                 }
             }
