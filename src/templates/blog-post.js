@@ -4,6 +4,8 @@ import {graphql} from 'gatsby'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
+import {documentToReactComponents} from '@contentful/rich-text-react-renderer'
+import {} from '@contentful/rich-text-types'
 
 // import heroStyles from '../components/hero.module.css'
 
@@ -22,16 +24,14 @@ class BlogPostTemplate extends React.Component {
                             alt={post.title}
                         />
                     </div>
-                    <div >
+                    <div>
                         <h1 className="text-4xl mb-2">{post.title}</h1>
-                        <p  className="text-1xl mb-2">
+                        <p className="text-1xl mb-2">
                             {post.dateAndTime}
                         </p>
-                        <div className="overflow-auto"
-                            dangerouslySetInnerHTML={{
-                                __html: post.richTextPost.childContentfulRichText.html
-                            }}
-                        />
+                        <div className="overflow-auto">
+                            {documentToReactComponents(post)}
+                        </div>
                     </div>
                 </div>
             </Layout>
@@ -40,6 +40,24 @@ class BlogPostTemplate extends React.Component {
 }
 
 export default BlogPostTemplate
+
+
+// import {BLOCKS, MARKS} from "@contentful/rich-text-types"
+// import {documentToReactComponents} from "@contentful/rich-text-react-renderer"
+//
+// const Bold = ({children}) => <span className="bold">{children}</span>
+// const Text = ({children}) => <p className="align-center">{children}</p>
+//
+// const options = {
+//     renderMark: {
+//         [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+//     },
+//     renderNode: {
+//         [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+//     },
+// }
+//
+// documentToReactComponents(node.bodyRichText.json, options)
 
 export const pageQuery = graphql`
     query BlogPostQuery($slug: Int!){

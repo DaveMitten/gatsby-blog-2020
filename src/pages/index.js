@@ -1,6 +1,6 @@
 import React from "react"
 import ArticleList from "../components/articleList"
-import TagFilter from "../components/tagFilter"
+import {TagFilter} from "../components/tagFilter"
 import Layout from "../components/layout"
 import {graphql} from "gatsby";
 
@@ -8,7 +8,7 @@ const indexPage =
     ({data}) => {
         return (
             <Layout screen="h-screen">
-                <TagFilter props={data} />
+                <TagFilter props={data.allContentfulBlogPost.edges} />
                 <div className="bg-white h-3 my-4 mx-auto w-11/12 mb-12"></div>
                 <ArticleList props={data}/>
             </Layout>

@@ -4,7 +4,6 @@ import {Link} from "gatsby";
 
 export default (props) =>
     (
-        //container
         <div
             className={props.rowStart + ` flex flex-wrap place-items-center justify-between bg-white h-20 text-gray-200`}>
             <Link to="/">
