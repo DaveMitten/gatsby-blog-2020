@@ -8,7 +8,7 @@ const indexPage =
     ({data}) => {
         return (
             <Layout screen="h-screen">
-                <TagFilter props={data.allContentfulBlogPost.edges} />
+                <TagFilter props={data.allContentfulBlogPost.edges}/>
                 <div className="bg-white h-3 my-4 mx-auto w-11/12 mb-12"></div>
                 <ArticleList props={data}/>
             </Layout>
@@ -31,9 +31,7 @@ export const query = graphql`
                         }
                     }
                     richTextPost {
-                        childContentfulRichText {
-                            html
-                        }
+                        json
                     }
                     tags {
                         tags
