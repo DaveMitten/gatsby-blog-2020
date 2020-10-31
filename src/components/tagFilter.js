@@ -16,7 +16,7 @@ export const TagFilter = ({props}) => {
         return setUniqueTags(tagList);
     };
 
-    useEffect((props) => {
+    useEffect(() => {
         tagFilterOptions(props)
     }, [uniqueTags]);
 

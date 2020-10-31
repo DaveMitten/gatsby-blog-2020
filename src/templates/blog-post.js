@@ -39,9 +39,11 @@ const options = {
             let {description, title, file} = node.data.target.fields;
             console.log('description, title, file', description, title, file)
             return (
-                <div className="h-48 w-48">
-                    <img src={file["en-US"].url} className="h-auto"/>
+                <div className="w-100 my-10">
+                    <img src={file["en-US"].url} alt="thing" className="h-auto"/>
                 </div>
+
+
 
             )
         },
@@ -89,16 +91,20 @@ class BlogPostTemplate extends React.Component {
                 {/*<div className="container mx-auto px-64 bg-white overflow-scroll">*/}
                 <div className="mx-64 px-48 py-10 m-10 bg-white overflow-scroll rounded-lg">
                     {/*<Helmet title={`${post.title} | ${siteTitle}`} />*/}
-                    <div>
-                        <Img
+
+                    <div className="w-100">
+                        <img
+                            src={post.heroImage.fluid.src}
                             alt={post.title}
+                            className="h-auto"
                         />
                     </div>
+                    <h1 className="text-4xl mb-1 text-center">{post.title}</h1>
+                    <p className="text-1xl mb-2 text-center mb-8">
+                        {post.dateAndTime}
+                    </p>
                     <div>
-                        <h1 className="text-4xl mb-2">{post.title}</h1>
-                        <p className="text-1xl mb-2">
-                            {post.dateAndTime}
-                        </p>
+
                         <div className="overflow-auto">
                             {documentToReactComponents(post.richTextPost.json, options)}
                         </div>
